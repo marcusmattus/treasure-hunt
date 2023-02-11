@@ -8,6 +8,8 @@
     "@3rdweb/hooks": "^1.8.0",
     "@3rdweb/react": "^1.8.1",
     "@googlemaps/js-api-loader": "^1.13.2",
+    "@imtbl/core-sdk": "^1.0.1",
+    "@imtbl/wallet-sdk-web": "^0.1.12",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",

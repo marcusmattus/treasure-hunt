@@ -1,10 +1,10 @@
-
-import { useWeb3, useSwitchNetwork } from "@3rdweb/hooks";
 import './Main.css';
 import App from './App';
+import { ImmutableX, Config } from '@imtbl/core-sdk';
 
 function Main() {
-  const { address, connectWallet } = useWeb3();
+  const config = Config.SANDBOX; // Or PRODUCTION
+  const client = new ImmutableX(config);
   return (
     address ? 
     (

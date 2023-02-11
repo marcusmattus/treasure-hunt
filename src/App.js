@@ -2,16 +2,27 @@
 import { useEffect, useState, useRef } from 'react'; 
 import { Loader } from "@googlemaps/js-api-loader";
 
-import { useWeb3 } from "@3rdweb/hooks";
-
 import './App.css';
 import Database from './database';
 import distanceBetween from './distance';
+import { AlchemyProvider } from '@ethersproject/providers';
+import { Wallet } from '@ethersproject/wallet';
+import { generateStarkPrivateKey, createStarkSigner } from '@imtbl/core-sdk';
+
+// Create Ethereum signer
+const ethNetwork = 'goerli'; // Or 'mainnet'
+const provider = new AlchemyProvider(ethNetwork, YOUR_ALCHEMY_API_KEY);
+const ethSigner = new Wallet(YOUR_PRIVATE_ETH_KEY).connect(provider);
+
+// Create Stark signer
+const starkPrivateKey = generateStarkPrivateKey(); // Or retrieve previously generated key
+const starkSigner = createStarkSigner(starkPrivateKey);
+
 
 const geofire = require('geofire-common');
 
 function App() {
-  const { address, connectWallet } = useWeb3();
+
 
   const [ origin, setOrigin ] = useState();  // the start position
   const [ treasures, setTreasures ] = useState([]);  // a list of treasures
@@ -27,11 +38,8 @@ function App() {
   const map = useRef();  // google map
   const marker = useRef();  // google map marker (for current position)
 
-  const claimNFT = async () => {
-    if (!address) {
-      await connectWallet('injected');
-    }
-  };
+  const config = Config.SANDBOX;
+const client = new ImmutableX(config);
 
   const checkingPosition = () => {
     //console.log('checking position', currentPosition.current);
